@@ -1,0 +1,862 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+   <meta charset='UTF-8'>  
+   <meta name="keywords" content="HTML5, CSS3, javascript, animation, cube"/>
+   <meta name="description" content="Time and date displayed on animated cube"/>
+   <meta name="author" content="Colin Hurd"/>
+   <meta name="viewport" content="width=device-width" />
+   <title>Cube Clock</title>
+      
+ <section class="container">
+     <div id="cube">
+        <figure class="front"></figure>
+        <figure class="back"></figure>
+        <figure class="right"></figure>
+        <figure class="left"></figure>
+        <figure class="top"></figure>
+        <figure class="bottom"></figure>
+    </div>
+    
+    <h class='lines ex1'>Drag anywhere on screen to orient the cube.</h>
+    <h class='lines ex4'>Click/Drag cursor anywhere on screen to orient the cube.</h>
+    <h class='lines ex2'>Caution! The cube is fragile.</h>
+    <h class='lines ex3'>Landscape gives a better view.</h>
+    <h class='lines ex5'>You can try to repair it yourself or </h>
+    <h class='lines ex6'>wait for our amazing FixiT button.</h>
+</section>
+
+<input id="myBtn" type="button" value="FixiT" onclick="repair()"/>
+
+ <style>
+ 
+ html,
+body {
+  background: #808080;
+  margin: 0px;
+  overflow: visible;
+  height: 100%;
+}
+
+
+/* Base style*/
+
+.container {
+  width: 500px;
+  height: 400px;
+  position: relative;
+  top: 200px;
+  margin: 0 auto 40px;
+  text-align: center;
+  -webkit-perspective: 1000px;
+  -o-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-animation: introduceCube 2s ease-out;
+  -moz-animation: introduceCube 2s ease-out;
+}
+
+@-webkit-keyframes introduceCube {
+  0% {
+    opacity: 0;
+    top: -20px;
+    -webkit-transform: scale(0.6);
+    transform: scale(0.6)
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    top: 200px;
+    -webkit-transform: scale(1);
+    transform: scale(1)
+  }
+}
+
+.ex1 {
+  position: absolute;
+  top: -90px;
+  left: -170px;
+  opacity: 0;
+}
+
+.ex4 {
+  position: absolute;
+  top: -90px;
+  left: -170px;
+}
+
+
+.ex2 {
+  position: absolute;
+  top: -60px;
+  left: -10px;
+}
+
+.ex5 {
+  position: absolute;
+  top: -80px;
+  left: -190px;
+}
+
+.ex6 {
+  position: absolute;
+  top: -50px;
+  left: -190px;
+}
+
+
+/* medium */
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .container {
+    top: -100px;
+  }
+  .lines {
+    font-size: 40px;
+  }
+  
+  
+  body {
+    -webkit-transform: scale (0.4);
+    -ms-transform: scale (0.4);
+    transform: scale(0.4);
+  }
+  @-webkit-keyframes introduceCube {
+    0% {
+      opacity: 0;
+      top: -20px;
+      -webkit-transform: scale(0.6);
+      -moz-animation: scale(0.6)
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      top: -100px;
+      -webkit-transform: scale(1);
+      -moz-animation: scale(1)
+    }
+  }
+  .ex1 {
+    position: absolute;
+    top: -50px;
+    left: -270px;
+    opacity: 1;
+  }
+  .ex2 {
+    position: absolute;
+    top: -20px;
+    left: -210px;
+  }
+  .ex3, .ex4{
+    opacity: 0;
+  }
+  .ex5 {
+    position: absolute;
+    top: 230px;
+    left: -350px;
+  }
+  .ex6 {
+    position: absolute;
+    top: 260px;
+    left: -348px;
+  }
+}
+
+
+/* small */
+
+@media only screen and (max-width: 480px) {
+  .container {
+    top: 100px;
+  }
+  .lines {
+    font-size: 40px;
+  }
+  body {
+    -webkit-transform: scale (0.4);
+    -ms-transform: scale (0.4);
+    transform: scale(0.4);
+  }
+  @-webkit-keyframes introduceCube {
+    0% {
+      opacity: 0;
+      top: -20px;
+      -webkit-transform: scale(0.6);
+      -moz-animation: scale(0.6)
+    }
+    20% {
+      opacity: 0;
+    }
+    100% {
+      top: 100px;
+      -webkit-transform: scale(1);
+      -moz-animation: scale(1)
+    }
+  }
+  .ex4 {
+    opacity: 0;
+   }
+  .ex1 {
+    position: absolute;
+    top: -50px;
+    left: -150px;
+    opacity: 1;
+  }
+  .ex2 {
+    position: absolute;
+    top: -20px;
+    left: 10px;
+  }
+  .ex3 {
+    position: absolute;
+    top: 630px;
+    left: -65px;
+  }
+  .ex5 {
+    position: absolute;
+    top: 400px;
+    left: -150px;
+  }
+  .ex6 {
+    position: absolute;
+    top: 430px;
+    left: -150px;
+  }
+}
+
+#cube {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+}
+
+.top.lidUpa,
+.front.lidUpa,
+.right.lidUpa,
+.left.lidUpa,
+.back.lidUpa,
+.bottom.lidUpa {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  transition: -webkit-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+}
+
+.top.aDown,
+.front.aDown,
+.left.aDown,
+.right.aDown,
+.back.aDown,
+.bottom.aDown {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 3s ease-in-out;
+  transition: -webkit-transform 3s ease-in-out;
+  transition: transform 3s ease-in-out;
+  transition: transform 3s ease-in-out, -webkit-transform 3s ease-in-out;
+  transition: transform 3s ease-in-out, -webkit-transform 3s ease-in-out;
+}
+
+.top.lidDone {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.top.bDown,
+.front.bDown,
+.left.bDown,
+.right.bDown,
+.back.bDown,
+.bottom.bDown {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  transition: -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+}
+
+.top.cDown,
+.front.cDown,
+.left.cDown,
+.right.cDown,
+.back.cDown,
+.bottom.cDown {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 5s ease-in-out;
+  transition: -webkit-transform 5s ease-in-out;
+  transition: transform 5s ease-in-out;
+  transition: transform 5s ease-in-out, -webkit-transform 5s ease-in-out;
+  transition: transform 5s ease-in-out, -webkit-transform 5s ease-in-out;
+}
+
+.top.dDown,
+.front.dDown,
+.left.dDown,
+.right.dDown,
+.back.dDown,
+.bottom.dDown {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 1s ease-in;
+  transition: -webkit-transform 1s ease-in;
+  transition: transform 1s ease-in;
+  transition: transform 1s ease-in, -webkit-transform 1s ease-in;
+  transition: transform 1s ease-in, -webkit-transform 1s ease-in;
+  -webkit-transition: all 1100ms cubic-bezier(0.870, 0.050, 0.715, 1);
+  -webkit-transition: all 1100ms cubic-bezier(0.870, 0.050, 0.715, 1.650);
+  transition: all 1100ms cubic-bezier(0.870, 0.050, 0.715, 1.650);
+}
+
+.top.eDown {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 5s ease-in;
+  transition: -webkit-transform 5s ease-in;
+  transition: transform 5s ease-in;
+  transition: transform 5s ease-in, -webkit-transform 5s ease-in;
+  transition: transform 5s ease-in, -webkit-transform 1s ease-in;
+  transition: transform 5s ease-in, -webkit-transform 1s ease-in;
+  -webkit-transition: all 4800ms cubic-bezier(0.870, -0.41, 0.19, 1.44);
+  -webkit-transition: all 4800ms cubic-bezier( 0.870, -0.41, 0.19, 1.44);
+  transition: all 4800ms cubic-bezier( 0.870, -0.41, 0.19, 1.44);
+}
+
+figure {
+  display: block;
+  position: absolute;
+  width: 196px;
+  height: 196px;
+  border: 2px solid black;
+  line-height: 196px;
+  font-size: 120px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+#cube.panels-backface-invisible figure {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+#cube.shaky {
+  -webkit-animation: shaky 0.5s 1 linear;
+  -moz-animation: shaky 0.5s 1 linear;
+}
+
+#cube.spin {
+  -webkit-transform-style: preserve-3d;
+  -moz-animation: preserve-3d;
+  -webkit-animation: rotate 200s infinite linear;
+  -moz-animation: rotate 200s infinite linear;
+}
+
+p::first-line {
+  position: relative;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.lines {
+  position: absolute;
+  color: white;
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.visible0 {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 1s linear 7s;
+  transition: opacity 1s linear 7s;
+}
+
+.visible1 {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 1s linear 2.5s;
+  transition: opacity 1s linear 2.5s;
+}
+
+.hidden1 {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 2s 1s, opacity 2s linear 1s;
+  transition: visibility 2s 1s, opacity 2s linear 1s;
+}
+
+.hidden0 {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0s linear 2s;
+  transition: opacity 0s linear 2s;
+}
+
+
+/* For reasons not understood, when the font size for a face is changed from that set
+     * in 'figure' (120px) to a new value (30px), the face is shifted along its +perp axis
+     * by (120-30px).  So I add 'top: 90px' to compensate.
+     */
+
+#cube .front {
+  background: hsla( 0, 100%, 50%, 0.7);
+}
+
+#cube .back {
+  background: hsla( 60, 100%, 50%, 0.7);
+}
+
+#cube .right {
+  background: hsla( 120, 100%, 50%, 0.7);
+}
+
+#cube .left {
+  background: hsla( 180, 100%, 50%, 0.7);
+}
+
+#cube .top {
+  top: 90px;
+  font-size: 30px;
+  background: hsla( 240, 100%, 50%, 0.7);
+  line-height: 180px;
+}
+
+#cube .bottom {
+  background: hsla( 300, 100%, 50%, 0.7);
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotateY( 0deg);
+    transform: rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: rotateY( 360deg);
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes rotate {
+  from {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+  }
+  to {
+    -webkit-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+  }
+}
+
+#myBtn {
+  position: absolute;
+  left: 230px;
+  top: 60px;
+  height: 60px;
+  width: 105px;
+  padding: 7px;
+  text-align: center;
+  color: #000000;
+  font-family: 'Arial';
+  font-size: 24px;
+  background: #dbe6c4;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dbe6c4), color-stop(100%, #9ba892));
+  background: -webkit-linear-gradient(top, #dbe6c4 0%, #9ba892 100%);
+  background: linear-gradient(to bottom, #dbe6c4 0%, #9ba892 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#dbe6c4', endColorstr='#9ba892', GradientType=0);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #b2b8ad;
+  border-radius: 6px;
+  box-shadow: 0px 0px 14px -3px #f2fadc;
+  text-shadow: 0px 1px 0px #ced9bf;
+}
+
+.front {
+  background: hsla( 0, 100%, 50%, 0.7);
+}
+
+.back {
+  background: hsla( 60, 100%, 50%, 0.7);
+}
+
+.right {
+  background: hsla( 120, 100%, 50%, 0.7);
+}
+
+.left {
+  background: hsla( 180, 100%, 50%, 0.7);
+}
+
+.top {
+  top: 90px;
+  font-size: 30px;
+  background: hsla( 240, 100%, 50%, 0.7);
+  line-height: 180px;
+}
+
+.bottom {
+  background: hsla( 300, 100%, 50%, 0.7);
+}
+
+.front {
+  -webkit-transform: translateZ( 100px);
+}
+
+.back {
+  -webkit-transform: rotateY(180deg) translateZ(100px);
+}
+
+.top {
+  -webkit-transform: rotateX(90deg) translateZ(100px);
+}
+
+.bottom {
+  -webkit-transform: rotateX(-90deg) translateZ(100px);
+}
+
+.left {
+  -webkit-transform: rotateY(-90deg) translateZ(100px);
+}
+
+.right {
+  -webkit-transform: rotateY(90deg) translateZ(100px);
+}
+ 
+ </style>
+    
+<script>
+    
+     var jumps=[];           //Contains values of random translations(px) for the faces upon collapse of the cube
+     var soffs=[];           //Contains values of random standoffs(px) for the faces upon repair of the cube
+     var down = false;       //mousedown flag
+     var broken = false;     //cube collapsed flag
+     var pitch, yaw;         //Derived from mouse co-ords
+     var faces = ['front', 'right', 'left', 'top', 'back', 'bottom'];
+     var mlabel='<p style="position: fixed; top:-60px; width:100%; text-align: center">mins</p>';
+     var hlabelp='<p style="position: fixed; top:-60px; width:100%; text-align: center">hours &nbsp; pm</p>';
+     var hlabela='<p style="position: fixed; top:-60px; width:100%; text-align: center">hours &nbsp; am</p>';
+     var slabel='<p style="position: fixed; top:-60px; width:100%; text-align: center">secs</p>';
+     var d, h, m, s, day, mnth;
+     var m_names = new Array("Jan", "Feb", "Mar", 
+        "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+         "Oct", "Nov", "Dec");
+     var dd_names = new Array("Sun", "Mon", "Tue", 
+        "Wed", "Thu", "Fri", "Sat");
+ 
+   function showTime(){
+        d=new Date();
+        h=d.getHours();
+        m=d.getMinutes();
+        s=d.getSeconds();
+        day=d.getDay();
+        mnth=d.getMonth();
+        dd=d.getDate();
+     if(h >= 12 && h<24){
+     if(h>12){h=h-12;}
+         document.getElementsByClassName('left')[0].innerHTML = h + hlabelp;
+         } else{
+         document.getElementsByClassName('left')[0].innerHTML = h + hlabela;}
+         document.getElementsByClassName('right')[0].innerHTML = s + slabel;
+         document.getElementsByClassName('front')[0].innerHTML = m + mlabel;
+         var result= dd_names[day].concat('&nbsp;').concat(m_names[mnth]).concat('&nbsp;').concat(dd);
+         document.getElementsByClassName('top')[0].innerHTML = result; 
+ 
+     if(m==59 && s==59){openAll();}
+     if(s==0 && m!=59){openFront();}
+         setTimeout(showTime,1000);
+}
+  function init(){ 
+      pitch=-27.5;
+      yaw=-27.3;
+      document.getElementById('myBtn').classList.add('hidden0');
+      document.getElementsByClassName('lines ex3')[0].classList.add('hidden0');
+      document.getElementsByClassName('lines ex5')[0].classList.add('hidden0');
+      document.getElementsByClassName('lines ex6')[0].classList.add('hidden0');
+      moveIt();
+      spinner();
+      showTime();
+ }
+    
+ document.onmousedown = function() {down= true; document.body.style.cursor='pointer';document.body.style.webkitCursor='pointer';};
+ document.onmouseup = function() {down=false;document.body.style.cursor='default';document.body.style.webkitCursor='default';};
+ 
+    for (var i=0; i<6; i++) {
+       document.getElementsByClassName(faces[i])[0].addEventListener('mouseover', shaker);
+       document.getElementsByClassName(faces[i])[0].addEventListener('touchstart', shaker);
+       document.getElementsByClassName(faces[i])[0].addEventListener('touchend', shaker);
+     }
+             
+ document.onmousemove = function(e){
+    if (down){
+        var x = e.clientX - innerWidth/2;
+        var y = e.clientY - innerHeight/2;
+        yaw = x / innerWidth * 180;
+        pitch = y / innerHeight * 180;
+         document.getElementsByClassName('lines ex1')[0].classList.add('hidden1');
+         document.getElementsByClassName('lines ex2')[0].classList.add('hidden1');
+         document.getElementsByClassName('lines ex4')[0].classList.add('hidden1');
+         moveIt();
+     }
+};
+
+ document.addEventListener('touchmove', function(e){
+        down=true;
+        var touch_obj = e.changedTouches[0]; // reference first touch point for this event
+        var x = touch_obj.clientX - innerWidth/2;
+        var y = touch_obj.clientY - innerHeight/2;
+        yaw = x / innerWidth * 180;
+        pitch = y / innerHeight * 180;
+        e.preventDefault();
+         document.getElementsByClassName('lines ex1')[0].classList.add('hidden1');
+         document.getElementsByClassName('lines ex2')[0].classList.add('hidden1');
+         document.getElementsByClassName('lines ex4')[0].classList.add('hidden1');
+        if(document.documentElement.clientWidth<480){
+        document.getElementsByClassName('lines ex3')[0].classList.remove('hidden0');}
+       
+         moveIt();
+      }, false);
+  
+
+function moveIt(){
+    
+     if (broken){
+     restyle_2();
+    document.querySelector('#cube .front').style.transform = 'translateZ('+ jumps[0] +'px ) rotateY( '+ (0-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg ) translateX('+ jumps[6] +'px) ';
+    document.querySelector('#cube .back').style.transform = 'translateZ('+ jumps[1] +'px) rotateY( '+ (0+yaw) +'deg ) rotateX( '+ (180-pitch) +'deg ) translateY('+ jumps[7] +'px)';
+    document.querySelector('#cube .right').style.transform = 'translateZ('+ jumps[2] +'px)  rotateY( '+ (-90-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg )translateX('+ jumps[8] +'px)';
+    document.querySelector('#cube .left').style.transform = 'translateZ('+ jumps[3] +'px)  rotateY( '+ (90-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg )translateY('+ jumps[9] +'px)';
+    document.querySelector('#cube .top').style.transform = 'translateZ('+ jumps[4] +'px)  rotateZ( '+ (0+yaw) +'deg ) rotateX( '+ (-90-pitch) +'deg )translateY('+ jumps[10] +'px)';
+    document.querySelector('#cube .bottom').style.transform = 'translateZ('+ jumps[5] +'px) rotateZ( '+ (0-yaw) +'deg ) rotateX( '+ (90-pitch) +'deg ) translateX('+ jumps[11] +'px)';
+    
+    document.querySelector('#cube .front').style.webkitTransform = 'translateZ('+ jumps[0] +'px ) rotateY( '+ (0-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg ) translateX('+ jumps[6] +'px) ';
+    document.querySelector('#cube .back').style.webkitTransform = 'translateZ('+ jumps[1] +'px) rotateY( '+ (0+yaw) +'deg ) rotateX( '+ (180-pitch) +'deg ) translateY('+ jumps[7] +'px)';
+    document.querySelector('#cube .right').style.webkitTransform = 'translateZ('+ jumps[2] +'px)  rotateY( '+ (-90-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg )translateX('+ jumps[8] +'px)';
+    document.querySelector('#cube .left').style.webkitTransform = 'translateZ('+ jumps[3] +'px)  rotateY( '+ (90-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg )translateY('+ jumps[9] +'px)';
+    document.querySelector('#cube .top').style.webkitTransform = 'translateZ('+ jumps[4] +'px)  rotateZ( '+ (0+yaw) +'deg ) rotateX( '+ (-90-pitch) +'deg )translateY('+ jumps[10] +'px)';
+    document.querySelector('#cube .bottom').style.webkitTransform = 'translateZ('+ jumps[5] +'px) rotateZ( '+ (0-yaw) +'deg ) rotateX( '+ (90-pitch) +'deg ) translateX('+ jumps[11] +'px)';
+       } else {
+    restyle_1();
+    document.querySelector('#cube .front').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .back').style.transform = 'rotateX( '+ (180+pitch) +'deg ) rotateY( '+ (0-yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .right').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (90+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .left').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (-90+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .top').style.transform = 'rotateX( '+ (90+pitch) +'deg ) rotateZ( '+ (0-yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .bottom').style.transform = 'rotateX( '+ (-90+pitch) +'deg ) rotateZ( '+ (0+yaw) +'deg ) translateZ( 100px )';
+    
+    document.querySelector('#cube .front').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .back').style.webkitTransform = 'rotateX( '+ (180+pitch) +'deg ) rotateY( '+ (0-yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .right').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (90+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .left').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (-90+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .top').style.webkitTransform = 'rotateX( '+ (90+pitch) +'deg ) rotateZ( '+ (0-yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .bottom').style.webkitTransform = 'rotateX( '+ (-90+pitch) +'deg ) rotateZ( '+ (0+yaw) +'deg ) translateZ( 100px )';
+        }
+    
+ }
+  
+ function openFront(){ 
+   document.getElementsByClassName('front')[0].classList.add('lidUpa');
+   document.querySelector('#cube .front').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg )   rotateZ( '+ (180) +'deg )   translateZ(100px )';
+   document.querySelector('#cube .front').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg )   rotateZ( '+ (180) +'deg )   translateZ(100px )';
+   
+  
+   ctop = document.querySelector('#cube .front'); 
+   ctop.addEventListener('webkitTransitionEnd', function(e) {ctop.classList.remove('lidUpa');ctop.classList.add('aDown');  //Chrome, Safari
+   document.querySelector('#cube .front').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) translateZ( 100px )';
+   document.querySelector('#cube .front').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) translateZ( 100px )';
+   }, false ); 
+   
+  setTimeout( restyle_1,3000);
+}
+
+
+ function restyle_1(){
+   for (var i=0; i<6; i++) {
+      var ctop = document.getElementsByClassName(faces[i])[0];
+      ctop.classList.remove('aDown');
+      ctop.classList.add('lidDone');
+      }
+  } 
+   
+   function restyle_2(){
+   for (var i=0; i<6; i++) {
+      var ctop = document.getElementsByClassName(faces[i])[0];
+      ctop.classList.remove('aDown');
+      ctop.classList.add('bDown');
+      }
+  } 
+  
+  function collapse(){  
+     broken = true;
+     for (var j=0; j<6; j++) {
+       document.getElementsByClassName(faces[j])[0].removeEventListener('mouseover', collapse);
+       document.getElementsByClassName(faces[j])[0].classList.add('aDown');} 
+
+    for (var i=0; i<12; i++) {jumps[i]=Math.floor(Math.random()*(800)- 400);}
+    document.querySelector('#cube .front').style.transform = 'translateZ('+ jumps[0] +'px ) rotateY( '+ (0-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg ) translateX('+ jumps[6] +'px) ';
+    document.querySelector('#cube .back').style.transform = 'translateZ('+ jumps[1] +'px) rotateY( '+ (0+yaw) +'deg ) rotateX( '+ (180-pitch) +'deg ) translateY('+ jumps[7] +'px)';
+    document.querySelector('#cube .right').style.transform = 'translateZ('+ jumps[2] +'px)  rotateY( '+ (-90-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg )translateX('+ jumps[8] +'px)';
+    document.querySelector('#cube .left').style.transform = 'translateZ('+ jumps[3] +'px)  rotateY( '+ (90-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg )translateY('+ jumps[9] +'px)';
+    document.querySelector('#cube .top').style.transform = 'translateZ('+ jumps[4] +'px)  rotateZ( '+ (0+yaw) +'deg ) rotateX( '+ (-90-pitch) +'deg )translateY('+ jumps[10] +'px)';
+    document.querySelector('#cube .bottom').style.transform = 'translateZ('+ jumps[5] +'px) rotateZ( '+ (0-yaw) +'deg ) rotateX( '+ (90-pitch) +'deg ) translateX('+ jumps[11] +'px)';
+    
+    document.querySelector('#cube .front').style.webkitTransform = 'translateZ('+ jumps[0] +'px ) rotateY( '+ (0-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg ) translateX('+ jumps[6] +'px) ';
+    document.querySelector('#cube .back').style.webkitTransform = 'translateZ('+ jumps[1] +'px) rotateY( '+ (0+yaw) +'deg ) rotateX( '+ (180-pitch) +'deg ) translateY('+ jumps[7] +'px)';
+    document.querySelector('#cube .right').style.webkitTransform = 'translateZ('+ jumps[2] +'px)  rotateY( '+ (-90-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg )translateX('+ jumps[8] +'px)';
+    document.querySelector('#cube .left').style.webkitTransform = 'translateZ('+ jumps[3] +'px)  rotateY( '+ (90-yaw) +'deg ) rotateX( '+ (0-pitch) +'deg )translateY('+ jumps[9] +'px)';
+    document.querySelector('#cube .top').style.webkitTransform = 'translateZ('+ jumps[4] +'px)  rotateZ( '+ (0+yaw) +'deg ) rotateX( '+ (-90-pitch) +'deg )translateY('+ jumps[10] +'px)';
+    document.querySelector('#cube .bottom').style.webkitTransform = 'translateZ('+ jumps[5] +'px) rotateZ( '+ (0-yaw) +'deg ) rotateX( '+ (90-pitch) +'deg ) translateX('+ jumps[11] +'px)';
+
+    document.getElementById('myBtn').classList.remove('hidden0','hidden1');  document.getElementById('myBtn').classList.add('visible0');
+    document.getElementsByClassName('lines ex5')[0].classList.remove('hidden0');document.getElementsByClassName('lines ex5')[0].classList.add('visible1');
+    document.getElementsByClassName('lines ex6')[0].classList.remove('hidden0');document.getElementsByClassName('lines ex6')[0].classList.add('visible1');
+    
+  }
+  
+  
+  function openAll(){ 
+     for (var i=0; i<5; i++) {
+    document.getElementsByClassName(faces[i])[0].classList.add('lidUpa');}
+      
+    document.querySelector('#cube .front').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) rotateX( '+ (-90) +'deg ) translateZ( 100px ) translateY(-200px )';
+    document.querySelector('#cube .back').style.transform = 'rotateX( '+ (180+pitch) +'deg ) rotateY( '+ (0-yaw) +'deg ) rotateX( '+ (-90) +'deg )translateZ( -100px )translateY( -200px )' ;
+    document.querySelector('#cube .right').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (90+yaw) +'deg )rotateX( '+ (-90) +'deg ) translateZ( 100px ) translateY(-200px )';
+    document.querySelector('#cube .left').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (-90+yaw) +'deg ) rotateX( '+ (-90) +'deg ) translateZ( 100px )translateY(-200px )';
+    document.querySelector('#cube .top').style.transform = 'rotateX( '+ (90+pitch) +'deg ) rotateZ( '+ (0-yaw) +'deg ) translateZ( 500px )';  
+    
+    document.querySelector('#cube .front').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) rotateX( '+ (-90) +'deg ) translateZ( 100px ) translateY(-200px )';
+    document.querySelector('#cube .back').style.webkitTransform = 'rotateX( '+ (180+pitch) +'deg ) rotateY( '+ (0-yaw) +'deg ) rotateX( '+ (-90) +'deg )translateZ( -100px )translateY( -200px )' ;
+    document.querySelector('#cube .right').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (90+yaw) +'deg )rotateX( '+ (-90) +'deg ) translateZ( 100px ) translateY(-200px )';
+    document.querySelector('#cube .left').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (-90+yaw) +'deg ) rotateX( '+ (-90) +'deg ) translateZ( 100px )translateY(-200px )';
+    document.querySelector('#cube .top').style.webkitTransform = 'rotateX( '+ (90+pitch) +'deg ) rotateZ( '+ (0-yaw) +'deg ) translateZ( 500px )';   
+
+
+    setTimeout(function(){
+    
+    for (var i=0; i<5; i++) {
+       var ctop = document.getElementsByClassName(faces[i])[0];
+      ctop.classList.remove('lidUpa');ctop.classList.add('aDown');
+      }
+    document.querySelector('#cube .front').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .back').style.transform = 'rotateX( '+ (180+pitch) +'deg ) rotateY( '+ (0-yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .right').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (90+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .left').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (-90+yaw) +'deg ) translateZ( 100px )';
+    document.getElementsByClassName(faces[3])[0].classList.remove('aDown');document.getElementsByClassName(faces[3])[0].classList.add('eDown');
+    document.querySelector('#cube .top').style.transform = 'rotateX( '+ (90+pitch) +'deg ) rotateZ( '+ (0-yaw) +'deg ) translateZ( 100px )' ; 
+    
+    document.querySelector('#cube .front').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .back').style.webkitTransform = 'rotateX( '+ (180+pitch) +'deg ) rotateY( '+ (0-yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .right').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (90+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .left').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (-90+yaw) +'deg ) translateZ( 100px )';
+    document.getElementsByClassName(faces[3])[0].classList.remove('aDown');document.getElementsByClassName(faces[3])[0].classList.add('eDown');
+    document.querySelector('#cube .top').style.webkitTransform = 'rotateX( '+ (90+pitch) +'deg ) rotateZ( '+ (0-yaw) +'deg ) translateZ( 100px )' ;},3000);
+    
+    var v = document.getElementsByTagName("audio")[0];
+       v.play();
+ 
+  setTimeout( restyle_1,7000);
+}
+ 
+ function spinner(){
+     document.getElementById('cube').classList.add('spin'); 
+}
+   
+ function repair(){
+      if(!broken) {return;} 
+ for (var i=0; i<5; i++) {soffs[i]=Math.floor(Math.random()*(100)+120);}
+ for (var j=0; j<6; j++) {
+       document.getElementsByClassName(faces[j])[0].removeEventListener('mouseover', collapse);
+       document.getElementsByClassName(faces[j])[0].classList.add('cDown');
+       document.getElementsByClassName(faces[j])[0].classList.remove('aDown', 'bDown', 'dDown');} 
+    
+       
+       document.querySelector('#cube .bottom').style.transform = 'rotateX( '+ (-90+pitch) +'deg ) rotateZ( '+ (0+yaw) +'deg ) translateZ( 100px )';
+       document.querySelector('#cube .back').style.transform = 'rotateX( '+ (180+pitch) +'deg ) rotateY( '+ (0-yaw) +'deg ) translateZ('+ soffs[0] +'px)';
+       document.querySelector('#cube .right').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (90+yaw) +'deg ) translateZ('+ soffs[1] +'px)';
+       document.querySelector('#cube .left').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (-90+yaw) +'deg ) translateZ('+ soffs[2] +'px)';
+       document.querySelector('#cube .front').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) translateZ('+ soffs[3] +'px)';
+       document.querySelector('#cube .top').style.transform = 'rotateX( '+ (90+pitch) +'deg ) rotateZ( '+ (0-yaw) +'deg ) translateZ('+ soffs[4] +'px)' ;
+       
+       document.querySelector('#cube .bottom').style.webkitTransform = 'rotateX( '+ (-90+pitch) +'deg ) rotateZ( '+ (0+yaw) +'deg ) translateZ( 100px )';
+       document.querySelector('#cube .back').style.webkitTransform = 'rotateX( '+ (180+pitch) +'deg ) rotateY( '+ (0-yaw) +'deg ) translateZ('+ soffs[0] +'px)';
+       document.querySelector('#cube .right').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (90+yaw) +'deg ) translateZ('+ soffs[1] +'px)';
+       document.querySelector('#cube .left').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (-90+yaw) +'deg ) translateZ('+ soffs[2] +'px)';
+       document.querySelector('#cube .front').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) translateZ('+ soffs[3] +'px)';
+       document.querySelector('#cube .top').style.webkitTransform = 'rotateX( '+ (90+pitch) +'deg ) rotateZ( '+ (0-yaw) +'deg ) translateZ('+ soffs[4] +'px)' ;
+       
+       broken=!broken;
+       document.getElementsByClassName('lines ex5')[0].classList.remove('visible1');document.getElementsByClassName('lines ex5')[0].classList.add('hidden1');
+       document.getElementsByClassName('lines ex6')[0].classList.remove('visible1');document.getElementsByClassName('lines ex6')[0].classList.add('hidden1');
+       
+       setTimeout(closeLid, 4000);
+}
+ 
+ function closeLid(){
+    for (var i=0; i<6; i++) {
+    document.getElementsByClassName(faces[i])[0].classList.remove('cDown','aDown', 'bDown');
+    document.getElementsByClassName(faces[i])[0].classList.add('dDown'); }
+    
+    document.querySelector('#cube .front').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .back').style.transform = 'rotateX( '+ (180+pitch) +'deg ) rotateY( '+ (0-yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .right').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (90+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .left').style.transform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (-90+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .top').style.transform = 'rotateX( '+ (90+pitch) +'deg ) rotateZ( '+ (0-yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .bottom').style.transform = 'rotateX( '+ (-90+pitch) +'deg ) rotateZ( '+ (0+yaw) +'deg ) translateZ( 100px )';
+    
+    document.querySelector('#cube .front').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (0+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .back').style.webkitTransform = 'rotateX( '+ (180+pitch) +'deg ) rotateY( '+ (0-yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .right').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (90+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .left').style.webkitTransform = 'rotateX( '+ (0+pitch) +'deg ) rotateY( '+ (-90+yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .top').style.webkitTransform = 'rotateX( '+ (90+pitch) +'deg ) rotateZ( '+ (0-yaw) +'deg ) translateZ( 100px )';
+    document.querySelector('#cube .bottom').style.webkitTransform = 'rotateX( '+ (-90+pitch) +'deg ) rotateZ( '+ (0+yaw) +'deg ) translateZ( 100px )';
+    
+      setTimeout(shaker1,5000);
+
+    document.getElementById('myBtn').classList.add('hidden1'); 
+    
+    
+ }
+ 
+  function shaker(){ 
+  if(!down || broken){return;}
+    //Set 2 in 3 chance that cube will collapse if mouseovered/touched
+    //var vm = Math.floor(Math.random()*(3 - 1))+1;
+    //if(vm ==2 || vm ==3){collapse();}
+  collapse();
+  }
+  
+ function shaker1(){
+  for (var k=0; k<6; k++) {document.getElementsByClassName(faces[k])[0].classList.remove('cDown', 'bDown', 'aDown', 'dDown');}
+   }
+  </script>
+   
+ </head>
+     <body onload='init()'>
+       <audio src = "cuckoo.m4a">
+    </body>
+</html>
+
+
+
+        
+ 
+
+
+
+
+
+
+
+
